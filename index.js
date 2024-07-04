@@ -2,6 +2,7 @@ require('dotenv').config();
 const {Telegraf} = require('telegraf');
 const express = require('express');
 const app = express();
+const axios = require('axios');
 // const ctrl = require("./Controller/controller");
 const service = require("./Services/service");
 const DB = require("./DB");
@@ -37,7 +38,7 @@ app.use((err,req,res,next) => {
 })
 
 app.get("/", (req,res) => {
-    res.send('<main style="width: 100%;height: 100vh;display: flex;align-items: center;justify-content: center;"><h1 style="text-align: center;font-size: 50px;">Hello 😁🦖</h1></main>');
+    res.redirect('https://t.me/Affliate_earn_bot');
 });
 
 // app.get("/go", ctrl);
@@ -47,15 +48,34 @@ app.get("/", (req,res) => {
 // BOT FUNCTIONS
 
 // LOGIN START
-bot.start(async (msg) => {
-    let affectedrows = await service.insertTELUser(msg)
-    // res.send(affectedrows)
-    // if(affectedrows == 0)
-    //     msg.reply("User already exist!")
-    // else
-        msg.reply('Hello 🦖,...')
+// bot.start(async (msg) => {
+//     let affectedrows = await service.insertTELUser(msg)
+//     // res.send(affectedrows)
+//     // if(affectedrows == 0)
+//     //     msg.reply("User already exist!")
+//     // else
+//         msg.reply('Hello 🦖,...')
 
-})
+// })
+
+const websiteUrl = 'https://affliate-earn.onrender.com/';
+
+bot.start(async (ctx) => {
+  try {
+    // Send an HTTP GET request to your website
+    const response = await axios.get(websiteUrl);
+    if (response.status === 200) {
+      ctx.reply('Website is now active!');
+        let affectedrows = await service.insertTELUser(ctx)
+
+    } else {
+      ctx.reply('Failed to wake up the website.');
+    }
+  } catch (error) {
+    ctx.reply('Error while trying to wake up the website.');
+    console.error(error);
+  }
+});
 
 
 bot.command('whatAll', async (msg) => {
