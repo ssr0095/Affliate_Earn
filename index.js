@@ -47,17 +47,6 @@ app.get("/", (req,res) => {
 // ---------------------------------------------------------------------------------------------------
 // BOT FUNCTIONS
 
-// LOGIN START
-// bot.start(async (msg) => {
-//     let affectedrows = await service.insertTELUser(msg)
-//     // res.send(affectedrows)
-//     // if(affectedrows == 0)
-//     //     msg.reply("User already exist!")
-//     // else
-//         msg.reply('Hello 🦖,...')
-
-// })
-
 const websiteUrl = 'https://affliate-earn.onrender.com/';
 
 bot.start(async (ctx) => {
