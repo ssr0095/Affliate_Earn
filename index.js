@@ -37,7 +37,7 @@ app.use((err,req,res,next) => {
 })
 
 app.get("/", (req,res) => {
-    res.send('<main style="width: 100%;height: 100vh;display: flex;align-items: center;justify-content: center;"><h1 style="text-align: center;font-size: 50px;">Hello 😁🦖</h1></main>');
+    res.redirect('https://t.me/Affliate_earn_bot');
 });
 
 // app.get("/go", ctrl);
